@@ -1,0 +1,15 @@
+{
+  "urls": [
+    "ftp://speedtest.tele2.net/100KB.zip",
+    "https://en.wikipedia.org/wiki/HTTP_403",
+    "http://www.ironspider.ca/website/fundamentals.htm",
+    "sftp://demo:password@test.rebex.net.com:22"
+  ],
+  "downloadDirectory": "downloads",
+  "sftpUsername": "demo",
+  "sftpPassword": "password",
+  "connectionTimeout": 5000,
+  "readTimeout": 5000,
+  "threadPoolSize": 4,
+  "ioBufferSize": 8192
+}

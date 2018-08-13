@@ -1,0 +1,11 @@
+{
+  "urls": [
+    "url1",
+    "url2"
+  ],
+  "downloadDirectory": "/downloads",
+  "connectionTimeout": 5000,
+  "readTimeout": 5000,
+  "threadPoolSize": 5,
+  "ioBufferSize": 1024
+}
