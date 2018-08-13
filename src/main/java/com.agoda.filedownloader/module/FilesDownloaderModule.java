@@ -30,7 +30,7 @@ public class FilesDownloaderModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        final JsonConfig jsonConfig = new JsonConfig(new JsonConfigReader(configFile).getConfig());
+        final Config jsonConfig = new JsonConfig(new JsonConfigReader(configFile).getConfig());
         bind(Config.class).toInstance(jsonConfig);
         bind(UrlReader.class).toInstance(new UrlReaderImpl(jsonConfig.getReadTimeout(), jsonConfig.getConnectionTimeout()));
         bind(StreamWriter.class).toInstance(new StreamWriterImpl(jsonConfig.getIOBufferSize()));

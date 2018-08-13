@@ -1,7 +1,5 @@
 package com.agoda.filedownloader.reader;
 
-import sun.net.www.protocol.sftp.SftpConnection;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;

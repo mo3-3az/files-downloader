@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 /**
  * This is the main controller, it will take the configurations
@@ -28,7 +27,6 @@ public class FilesDownloadManager {
     private Config config;
     private String downloadsDirectory;
     private ExecutorService executor;
-    @Inject
     private FileDownloader fileDownloader;
 
     @Inject
@@ -49,7 +47,7 @@ public class FilesDownloadManager {
         LOGGER.info("All files will be downloaded to " + downloadsDirectory);
     }
 
-    public List<Future<Void>> downloadAll() {
+    public void downloadAll() {
         List<Callable<Void>> tasks = new ArrayList<>();
         config.getUrls().forEach(urlString -> {
             try {
@@ -61,14 +59,13 @@ public class FilesDownloadManager {
         });
 
         try {
-            return executor.invokeAll(tasks);
+            executor.invokeAll(tasks);
         } catch (InterruptedException e) {
             LOGGER.error("Error while shutting down the files downloader!", e);
         } finally {
             executor.shutdownNow();
         }
 
-        return null;
     }
 
 }
