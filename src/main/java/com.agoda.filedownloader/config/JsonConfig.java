@@ -16,8 +16,6 @@ public class JsonConfig implements Config {
 
     private static final String JSON_CONFIG_KEY_URLS = "urls";
     private static final String JSON_CONFIG_KEY_DOWNLOAD_DIRECTORY = "downloadDirectory";
-    private static final String JSON_CONFIG_KEY_SFTP_USERNAME = "sftpUsername";
-    private static final String JSON_CONFIG_KEY_SFTP_PASSWORD = "sftpPassword";
     private static final String JSON_CONFIG_KEY_CONNECTION_TIMEOUT = "connectionTimeout";
     private static final String JSON_CONFIG_KEY_READ_TIMEOUT = "readTimeout";
     private static final String JSON_CONFIG_KEY_THREAD_POOL_SIZE = "threadPoolSize";
@@ -27,8 +25,6 @@ public class JsonConfig implements Config {
 
     private List<String> urls;
     private String downloadDirectory;
-    private String sftpUsername;
-    private String sftpPassword;
     private int connectionTimeout;
     private int readTimeout;
     private int threadPoolSize;
@@ -51,12 +47,6 @@ public class JsonConfig implements Config {
 
         checkConfiguration(JSON_CONFIG_KEY_DOWNLOAD_DIRECTORY);
         downloadDirectory = config.get(JSON_CONFIG_KEY_DOWNLOAD_DIRECTORY).getAsString();
-
-        checkConfiguration(JSON_CONFIG_KEY_SFTP_USERNAME);
-        sftpUsername = config.get(JSON_CONFIG_KEY_SFTP_USERNAME).getAsString();
-
-        checkConfiguration(JSON_CONFIG_KEY_SFTP_PASSWORD);
-        sftpPassword = config.get(JSON_CONFIG_KEY_SFTP_PASSWORD).getAsString();
 
         checkConfiguration(JSON_CONFIG_KEY_CONNECTION_TIMEOUT);
         connectionTimeout = config.get(JSON_CONFIG_KEY_CONNECTION_TIMEOUT).getAsInt();
@@ -85,16 +75,6 @@ public class JsonConfig implements Config {
     @Override
     public String getDownloadDirectory() {
         return downloadDirectory;
-    }
-
-    @Override
-    public String getSftpUsername() {
-        return sftpUsername;
-    }
-
-    @Override
-    public String getSftPassword() {
-        return sftpPassword;
     }
 
     @Override

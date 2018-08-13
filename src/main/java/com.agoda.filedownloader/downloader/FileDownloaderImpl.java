@@ -4,7 +4,6 @@ import com.agoda.filedownloader.downloader.helper.FileManager;
 import com.agoda.filedownloader.reader.UrlReader;
 import com.agoda.filedownloader.writer.StreamWriter;
 import com.google.inject.Inject;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -33,15 +32,10 @@ public class FileDownloaderImpl implements FileDownloader {
 
     @Override
     public Callable<Void> download(URL url, String downloadDirectory) {
-        return () -> downloadFile(url, null, null, downloadDirectory);
+        return () -> downloadFile(url, downloadDirectory);
     }
 
-    @Override
-    public Callable<Void> downloadSecure(URL url, String username, String password, String downloadDirectory) {
-        return () -> downloadFile(url, username, password, downloadDirectory);
-    }
-
-    private Void downloadFile(URL url, String username, String password, String downloadDirectory) {
+    private Void downloadFile(URL url, String downloadDirectory) {
         FileManager fileManager = new FileManager(url, downloadDirectory);
         try {
             final String fileName = fileManager.getFileName();
@@ -50,11 +44,7 @@ public class FileDownloaderImpl implements FileDownloader {
             LOGGER.info("Download started from URL: " + url.toString());
 
             final File targetFile = new File(fileRelPath);
-            if (StringUtils.isAnyBlank(username, password)) {
-                writer.write(reader.read(url), targetFile);
-            } else {
-                writer.write(reader.readSecure(url, username, password), targetFile);
-            }
+            writer.write(reader.read(url), targetFile);
 
             LOGGER.info("File from URL: " + url.toString() + " was downloaded successfully as: " + fileName);
         } catch (IOException e) {

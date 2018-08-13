@@ -3,7 +3,6 @@ package com.agoda.filedownloader.module;
 import com.agoda.filedownloader.config.Config;
 import com.agoda.filedownloader.downloader.FileDownloader;
 import com.agoda.filedownloader.downloader.exception.FileDownloaderInitializationException;
-import com.agoda.filedownloader.downloader.protocol.ProtocolManager;
 import com.google.inject.Inject;
 import org.apache.log4j.Logger;
 
@@ -55,11 +54,7 @@ public class FilesDownloadManager {
         config.getUrls().forEach(urlString -> {
             try {
                 final URL url = new URL(urlString);
-                if (new ProtocolManager(url.getProtocol()).requiresAuthentication()) {
-                    tasks.add(fileDownloader.downloadSecure(url, config.getSftpUsername(), config.getSftPassword(), downloadsDirectory));
-                } else {
-                    tasks.add(fileDownloader.download(url, downloadsDirectory));
-                }
+                tasks.add(fileDownloader.download(url, downloadsDirectory));
             } catch (Exception e) {
                 LOGGER.error("Error while downloading file from url: " + urlString, e);
             }

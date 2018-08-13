@@ -12,10 +12,4 @@ public interface UrlReader {
      */
     InputStream read(URL url) throws IOException;
 
-    /**
-     * This supports authentication.
-     */
-    InputStream readSecure(URL url, String username, String password) throws IOException;
-
-
 }

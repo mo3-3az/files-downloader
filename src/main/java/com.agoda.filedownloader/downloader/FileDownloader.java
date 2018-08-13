@@ -14,8 +14,4 @@ public interface FileDownloader {
      */
     Callable<Void> download(URL url, String downloadDirectory);
 
-    /**
-     * This supports authentication.
-     */
-    Callable<Void> downloadSecure(URL url, String usename, String password, String downloadDirectory);
 }

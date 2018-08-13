@@ -11,10 +11,6 @@ public interface Config {
 
     String getDownloadDirectory();
 
-    String getSftpUsername();
-
-    String getSftPassword();
-
     int getConnectionTimeout();
 
     int getReadTimeout();

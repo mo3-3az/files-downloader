@@ -33,16 +33,6 @@ public class UrlReaderImpl implements UrlReader {
         return urlConnection.getInputStream();
     }
 
-    @Override
-    public InputStream readSecure(URL url, String username, String password) throws IOException {
-        URLConnection urlConnection = getConnection(url);
-        urlConnection.setRequestProperty(SftpConnection.PASSWORD, password);
-        urlConnection.setRequestProperty(SftpConnection.USERNAME, username);
-        urlConnection.connect();
-
-        return urlConnection.getInputStream();
-    }
-
     private URLConnection getConnection(URL url) throws IOException {
         if (url == null) {
             throw new IllegalArgumentException("Url is null!");

@@ -22,10 +22,6 @@ public class JsonConfigReader {
 
     private JsonObject config;
 
-    public JsonConfigReader() {
-        this(null);
-    }
-
     /**
      * Will load the passed file if passed and a valid json file, otherwise will terminate.
      */
