@@ -54,7 +54,7 @@ public class FilesDownloadManager {
         config.getUrls().forEach(urlString -> {
             try {
                 final URL url = new URL(urlString);
-                tasks.add(fileDownloader.download(url, downloadsDirectory));
+                tasks.add(fileDownloader.download(url, new File(downloadsDirectory)));
             } catch (Exception e) {
                 LOGGER.error("Error while downloading file from url: " + urlString, e);
             }

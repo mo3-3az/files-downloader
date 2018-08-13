@@ -23,31 +23,31 @@ public class FileManagerTest {
 
     @Test
     public void getFileNameFromUrlWithoutFile() throws MalformedURLException {
-        final FileManager fileManager = new FileManager(new URL(VALID_URL), DIR);
+        final FileManager fileManager = new FileManager(new URL(VALID_URL), new File(DIR));
         Assert.assertEquals(EMPTY, fileManager.getFileName());
     }
 
     @Test
     public void getFileNameFromUrlWithoutExtension() throws MalformedURLException {
-        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITHOUT_EXTENSION), DIR);
+        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITHOUT_EXTENSION), new File(DIR));
         Assert.assertEquals(FILE_WITHOUT_EXTENSION, fileManager.getFileName());
     }
 
     @Test
     public void getFileNameFromUrlWithExtension() throws MalformedURLException {
-        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITH_EXTENSION), DIR);
+        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITH_EXTENSION), new File(DIR));
         Assert.assertEquals(FILE_WITH_EXTENSION, fileManager.getFileName());
     }
 
     @Test
     public void getFileNameFromUrlWithoutExtensionWithQueryParams() throws MalformedURLException {
-        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITH_QUERY_PARAMS), DIR);
+        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITH_QUERY_PARAMS), new File(DIR));
         Assert.assertEquals(FILE_WITHOUT_EXTENSION, fileManager.getFileName());
     }
 
     @Test
     public void getFileNameFromUrlWithExtensionAndQueryParams() throws MalformedURLException {
-        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITH_EXTENSION_AND_QUERY_PARAMS), DIR);
+        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITH_EXTENSION_AND_QUERY_PARAMS), new File(DIR));
         Assert.assertEquals(FILE_WITH_EXTENSION, fileManager.getFileName());
     }
 
@@ -58,13 +58,13 @@ public class FileManagerTest {
 
     @Test
     public void getFileRelativePathFromUrl() throws MalformedURLException {
-        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITHOUT_EXTENSION), DIR);
+        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITHOUT_EXTENSION), new File(DIR));
         Assert.assertEquals(DIR + File.separator + FILE_WITHOUT_EXTENSION, fileManager.getFileRelPath());
     }
 
     @Test
     public void cleanUp() throws IOException {
-        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITHOUT_EXTENSION), DIR);
+        final FileManager fileManager = new FileManager(new URL(VALID_URL + FILE_WITHOUT_EXTENSION), new File(DIR));
         Assert.assertTrue("File wasn't deleted!", fileManager.cleanup());
         if (new File(fileManager.getFileName()).createNewFile()) {
             Assert.assertTrue("File wasn't deleted!", fileManager.cleanup());

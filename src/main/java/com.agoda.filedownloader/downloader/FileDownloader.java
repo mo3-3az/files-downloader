@@ -1,5 +1,6 @@
 package com.agoda.filedownloader.downloader;
 
+import java.io.File;
 import java.net.URL;
 import java.util.concurrent.Callable;
 
@@ -12,6 +13,6 @@ public interface FileDownloader {
      * <p>
      * It should return a callable which will download the file when invoked.
      */
-    Callable<Void> download(URL url, String downloadDirectory);
+    Callable<Void> download(URL url, File downloadDirectory);
 
 }

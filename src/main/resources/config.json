@@ -1,5 +1,6 @@
 {
   "urls": [
+    "file:///home/file.file",
     "http://www.ironspider.ca/website/fundamentals.htm",
     "https://en.wikipedia.org/wiki/HTTP_403",
     "ftp://speedtest.tele2.net/100KB.zip",

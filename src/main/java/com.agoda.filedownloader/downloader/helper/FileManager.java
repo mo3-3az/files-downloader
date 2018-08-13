@@ -14,9 +14,9 @@ import java.net.URL;
 public class FileManager {
 
     private URL url;
-    private String directory;
+    private File directory;
 
-    public FileManager(URL url, String directory) {
+    public FileManager(URL url, File directory) {
         if (url == null) {
             throw new IllegalArgumentException("Url is null!");
         }

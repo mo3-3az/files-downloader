@@ -31,11 +31,11 @@ public class FileDownloaderImpl implements FileDownloader {
     }
 
     @Override
-    public Callable<Void> download(URL url, String downloadDirectory) {
+    public Callable<Void> download(URL url, File downloadDirectory) {
         return () -> downloadFile(url, downloadDirectory);
     }
 
-    private Void downloadFile(URL url, String downloadDirectory) {
+    private Void downloadFile(URL url, File downloadDirectory) {
         FileManager fileManager = new FileManager(url, downloadDirectory);
         try {
             final String fileName = fileManager.getFileName();
@@ -52,7 +52,6 @@ public class FileDownloaderImpl implements FileDownloader {
             if (!fileManager.cleanup()) {
                 LOGGER.error("Error while deleting a partially downloaded file from url: " + url);
             }
-            Thread.currentThread().interrupt();
         }
 
         return null;
