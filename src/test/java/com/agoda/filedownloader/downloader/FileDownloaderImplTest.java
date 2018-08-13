@@ -2,9 +2,9 @@ package com.agoda.filedownloader.downloader;
 
 import com.agoda.filedownloader.reader.UrlReaderImpl;
 import com.agoda.filedownloader.writer.StreamWriterImpl;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -29,15 +29,15 @@ public class FileDownloaderImplTest {
     private static final int TIMEOUT = 5000;
     private static final int IO_BUFFER_SIZE = 8192;
 
-    private FileDownloaderImpl fileDownloader;
-    private File downloadDirectory;
+    private static FileDownloaderImpl fileDownloader;
+    private static File downloadDirectory;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void setUp() throws Exception {
         fileDownloader = new FileDownloaderImpl(new UrlReaderImpl(TIMEOUT, TIMEOUT), new StreamWriterImpl(IO_BUFFER_SIZE));
         downloadDirectory = new File(TEST_DOWNLOADS);
-        if (downloadDirectory.mkdirs()) {
-            throw new Exception("Couldn't create downloads directory!");
+        if (!downloadDirectory.exists()) {
+            downloadDirectory.mkdirs();
         }
     }
 
@@ -83,11 +83,10 @@ public class FileDownloaderImplTest {
         };
     }
 
-    @After
-    public void tearDown() throws Exception {
-        final File downloadDirectory = new File(TEST_DOWNLOADS);
-        if (downloadDirectory.delete()) {
-            throw new Exception("Couldn't delete downloads directory!");
+    @AfterClass
+    public static void tearDown() {
+        if (downloadDirectory.exists()) {
+            downloadDirectory.deleteOnExit();
         }
     }
 }
