@@ -14,10 +14,13 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
+ * This is based on Apache Commons VFS.
+ *
  * @author Moath
  */
 public class SecureFTP extends URLConnection {
 
+    private static final String HOST_KEY_CHECKING = "no";
     private FileObject fileObject;
 
     protected SecureFTP(URL url) {
@@ -35,7 +38,7 @@ public class SecureFTP extends URLConnection {
 
         FileSystemOptions fsOptions = new FileSystemOptions();
         final SftpFileSystemConfigBuilder instance = SftpFileSystemConfigBuilder.getInstance();
-        instance.setStrictHostKeyChecking(fsOptions, "no");
+        instance.setStrictHostKeyChecking(fsOptions, HOST_KEY_CHECKING);
         instance.setTimeout(fsOptions, getConnectTimeout());
         FileSystemManager fsManager = VFS.getManager();
         fileObject = fsManager.resolveFile(uri.toString(), fsOptions);

@@ -10,6 +10,6 @@
   "downloadDirectory": "downloads",
   "connectionTimeout": 5000,
   "readTimeout": 5000,
-  "threadPoolSize": 4,
+  "threadPoolSize": 6,
   "ioBufferSize": 8192
 }
