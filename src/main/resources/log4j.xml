@@ -23,7 +23,7 @@
         <appender-ref ref="file"/>
     </root>
 
-    <logger name="com.agoda">
+    <logger name="com.thecodelab">
         <level value="DEBUG"/>
     </logger>
 </log4j:configuration>
